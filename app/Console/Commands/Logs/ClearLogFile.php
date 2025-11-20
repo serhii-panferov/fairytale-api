@@ -30,8 +30,10 @@ class ClearLogFile extends Command
         // Clear the log files and select what to clear
         $result = Process::run('echo "" > storage/logs/laravel.log && echo "" > storage/logs/cron.log');
         if ($result->successful()) {
+            $this->info('Logs cleared successfully.');
             echo $result->output();
         } else {
+            $this->info('Failed to clear logs.');
             echo $result->errorOutput();
         }
     }
