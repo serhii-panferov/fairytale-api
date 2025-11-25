@@ -19,14 +19,8 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-//Route::get('/logs', function () {
-//    return Inertia::render('Logs');
-//})->middleware(['auth', 'verified'])->name('logs');
-
-Route::get('/logs', [LogController::class, 'index'])->name('logs');
-
 Route::middleware('auth')->group(function () {
-    //Route::resource('logs', LogController::class);
+    Route::get('/logs', [LogController::class, 'index'])->name('logs');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
