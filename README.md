@@ -40,9 +40,15 @@ This API serves to:
   cp .env.example .env
   
 4. **Run migrations (if needed):**
-  ```bash
+- ```bash
     sail artisan migrate
   
 5. **Start the development server:**
-  ```bash
+-  ```bash
     sail up -d
+
+## Contributing
+Pull requests and issues are welcome! Please review contributing guidelines before proposing changes.
+
+##  License
+This project is licensed under the MIT License.
