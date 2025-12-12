@@ -49,6 +49,3 @@ This API serves to:
 
 ## Contributing
 Pull requests and issues are welcome! Please review contributing guidelines before proposing changes.
-
-##  License
-This project is licensed under the MIT License.
