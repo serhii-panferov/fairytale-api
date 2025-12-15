@@ -25,8 +25,8 @@ class ExchangeRates extends Command
     protected $description = 'Gets and stores exchange rates from external API';
 
     /**
-     * {@inheritdoc}
-     * @param ExchangeRateRepositoryInterface $exchangeRateRepository
+     * Constructor.
+     * @inheritDoc
      */
     public function __construct(private readonly ExchangeRateRepositoryInterface $exchangeRateRepository)
     {

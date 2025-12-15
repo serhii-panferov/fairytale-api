@@ -45,20 +45,9 @@ class ExchangeRateRepository implements ExchangeRateRepositoryInterface
         $exchangeRates = $shouldRestructure ?
             $this->model->getRestructuredData($validExchangeRates) :
             $validExchangeRates;
-        $updatedRates = [];
-        foreach ($exchangeRates as $exchangeRate) {
-            $result = $this->model->updateOrInsert(
-                [
-                    'currency_a_id' => $exchangeRate['currency_a_id'],
-                    'currency_b_id' => $exchangeRate['currency_b_id'],
-                    'date' => $exchangeRate['date'],
-                ],
-                $exchangeRate,
-            );
-            if ($result) {
-                $updatedRates[] = $exchangeRate;
-            }
-        }
-        return count($updatedRates);
+        $uniqueBy = ['currency_a_id', 'currency_b_id', 'date'];
+        $updateColumns = array_diff(array_keys($exchangeRates[0] ?? []), $uniqueBy);
+        $this->model->upsert($exchangeRates, $uniqueBy, $updateColumns);
+        return count($exchangeRates);
     }
 }
