@@ -1,3 +1,6 @@
+[![CI](https://github.com/Travel-Agency-Fairytale/api/actions/workflows/ci.yml/badge.svg)](
+https://github.com/Travel-Agency-Fairytale/api/actions/workflows/ci.yml
+)
 # Travel-Agency-Fairytale API
 
 This repository contains the core API backend for Travel-Agency-Fairytale. The API is designed to communicate with external services and aggregate travel-related data for downstream applications.
