@@ -13,6 +13,7 @@ class AppServiceProvider extends ServiceProvider
 {
     /**
      * @inheritDoc
+     * @var array<class-string, class-string>
      */
     public $bindings = [
         ExchangeRateProviderInterface::class => MonobankProvider::class,

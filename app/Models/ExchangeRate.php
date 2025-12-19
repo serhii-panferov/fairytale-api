@@ -4,11 +4,37 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * ExchangeRate Model
+ *
+ * @property int $id
+ * @property int $currency_a_id
+ * @property int $currency_b_id
+ * @property float|null $rate_buy
+ * @property float|null $rate_sell
+ * @property float|null $rate_cross
+ * @property int $date
+ * @property-read \App\Models\Currency $currencyA
+ * @property-read \App\Models\Currency $currencyB
+ * @method static \Database\Factories\ExchangeRateFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeRate newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeRate newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeRate query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeRate whereCurrencyAId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeRate whereCurrencyBId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeRate whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeRate whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeRate whereRateBuy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeRate whereRateCross($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeRate whereRateSell($value)
+ * @mixin \Illuminate\Database\Eloquent\Model
+ */
 class ExchangeRate extends Model
 {
+    /** @phpstan-use \Illuminate\Database\Eloquent\Factories\HasFactory<\Database\Factories\ExchangeRateFactory> */
     use HasFactory;
-
     public $timestamps = false;
 
     protected $fillable = [
@@ -20,12 +46,22 @@ class ExchangeRate extends Model
         'date',
     ];
 
-    public function currencyA()
+    /**
+     * Defines relationship to Currency model for currency A.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Currency, $this>
+     */
+    public function currencyA(): BelongsTo
     {
         return $this->belongsTo(Currency::class, 'currency_a_id');
     }
 
-    public function currencyB()
+    /**
+     * Defines relationship to Currency model for currency B.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Currency, $this>
+     */
+    public function currencyB(): BelongsTo
     {
         return $this->belongsTo(Currency::class, 'currency_b_id');
     }
@@ -33,7 +69,7 @@ class ExchangeRate extends Model
     /**
      * This method is used to restructure data to save all in one SQL query.
      *
-     * @param mixed[] $date Date array
+     * @param mixed[] $apiData Date array
      * @return mixed[]
      */
     public function getRestructuredData(array $apiData): array

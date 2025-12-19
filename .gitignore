@@ -22,3 +22,7 @@ yarn-error.log
 /.zed
 _ide_helper.php
 /.run/*
+# PHP-CS-Fixer cache
+.php-cs-fixer.cache
+# если есть подпроекты/пакеты
+**/.php-cs-fixer.cache

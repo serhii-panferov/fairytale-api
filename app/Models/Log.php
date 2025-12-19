@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Log whereLevel($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Log whereMessage($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Log whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin \Illuminate\Database\Eloquent\Model
  */
 class Log extends Model
 {
