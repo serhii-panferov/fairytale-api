@@ -23,8 +23,10 @@ class ClearLogFile extends Command
 
     /**
      * Execute the console command.
+     *
+     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         // TODO update to use Storage facade
         // Clear the log files and select what to clear

@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\Models\Currency;
 use App\Models\ExchangeRate;
 use App\Repositories\Interfaces\ExchangeRateRepositoryInterface;
+use Illuminate\Database\Eloquent\Builder;
 
 class ExchangeRateRepository implements ExchangeRateRepositoryInterface
 {
@@ -13,6 +15,8 @@ class ExchangeRateRepository implements ExchangeRateRepositoryInterface
 
     /**
      * Constructor
+     *
+     * @param ExchangeRate $exchangeRate ExchangeRate model
      */
     public function __construct(ExchangeRate $exchangeRate)
     {
@@ -47,7 +51,9 @@ class ExchangeRateRepository implements ExchangeRateRepositoryInterface
             $validExchangeRates;
         $uniqueBy = ['currency_a_id', 'currency_b_id', 'date'];
         $updateColumns = array_diff(array_keys($exchangeRates[0] ?? []), $uniqueBy);
-        $this->model->upsert($exchangeRates, $uniqueBy, $updateColumns);
+        /** @var Builder<ExchangeRate> $query */
+        $query = $this->model->newModelQuery();
+        $query->upsert($exchangeRates, $uniqueBy, $updateColumns);
         return count($exchangeRates);
     }
 }

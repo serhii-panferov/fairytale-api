@@ -35,8 +35,11 @@ class ExchangeRates extends Command
 
     /**
      * Execute the console command.
+     *
+     * @param ExchangeRateService $ExchangeRateService The exchange rate service
+     * @return int
      */
-    public function handle(ExchangeRateService $ExchangeRateService)
+    public function handle(ExchangeRateService $ExchangeRateService): int
     {
         try {
             $apiData = $ExchangeRateService->fetch();
