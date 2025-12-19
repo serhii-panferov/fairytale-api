@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use PhpParser\Builder;
 
 /**
  *
@@ -68,7 +67,7 @@ class Currency extends Model
     public static function getIdByCode(int $code): ?int
     {
         /** @var \Illuminate\Database\Eloquent\Builder<Currency>  */
-        $query= self::query();
+        $query = self::query();
         $currency = $query->where(['numeric_code' => $code])->first();
         return $currency->id ?? null;
     }

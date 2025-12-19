@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use App\Models\Currency;
 use App\Models\ExchangeRate;
 use App\Repositories\Interfaces\ExchangeRateRepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;

@@ -33,10 +33,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class ExchangeRate extends Model
 {
-    public $timestamps = false;
-
     /** @phpstan-use \Illuminate\Database\Eloquent\Factories\HasFactory<\Database\Factories\ExchangeRateFactory> */
     use HasFactory;
+    public $timestamps = false;
 
     protected $fillable = [
         'currency_a_id',
